@@ -19,6 +19,11 @@ public class HomeController {
     return "welcome";
   }
 
+  @GetMapping("/login")
+  public String loginPage() {
+    return "login";
+  }
+
   @GetMapping("/forbidden")
   public String forbiddenPage() {
     return "forbidden";

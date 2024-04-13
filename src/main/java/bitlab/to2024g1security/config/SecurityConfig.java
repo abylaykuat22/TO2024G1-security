@@ -48,7 +48,8 @@ public class SecurityConfig {
         .defaultSuccessUrl("/", true)
         .usernameParameter("username")
         .passwordParameter("password")
-        .failureUrl("/signin?error")
+        .loginPage("/login")
+        .failureUrl("/login?error")
     );
 
     httpSecurity.exceptionHandling(exceptionHandlingConf -> exceptionHandlingConf

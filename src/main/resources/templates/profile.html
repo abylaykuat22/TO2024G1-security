@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
+<head th:insert="~{head}">
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
-<body>
+<body class="container col-6 mx-auto">
+<div th:if="${param.status != null}"
+     th:class="${param.status eq 'Password successfully changed!'
+       ? 'alert alert-success alert-dismissible fade show'
+       : 'alert alert-danger alert-dismissible fade show'}"
+     role="alert">
+  <strong th:text="${param.status}"></strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
   <h1 th:text="${'Welcome to profile page' + #authentication.principal.fullName}"></h1>
+
+  <form action="/user/change-password" method="post">
+    <div class="mb-3">
+      <label for="passwordInput" class="form-label">Current Password</label>
+      <input name="currentPassword" type="password" class="form-control" id="passwordInput">
+    </div>
+    <div class="mb-3">
+      <label for="newPasswordInput" class="form-label">New Password</label>
+      <input name="newPassword" type="password" class="form-control" id="newPasswordInput">
+    </div>
+    <div class="mb-3">
+      <label for="reNewPasswordInput" class="form-label">Repeat new Password</label>
+      <input name="reNewPassword" type="password" class="form-control" id="reNewPasswordInput">
+    </div>
+    <button class="btn btn-success">Change password</button>
+  </form>
 </body>
 </html>
